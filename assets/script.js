@@ -1,10 +1,9 @@
-//## 1
 var timeblockContainer = document.getElementsByClassName("container");
-// console.log(timeContainer);
 var currentDay = document.getElementById("currentDay");
-var now = new Date();
-// console.log(now);
-const weekday = [
+var buttons = document.getElementsByTagName("button");
+// console.log(timeblockContainer);
+
+var weekdays = [
   "Sunday",
   "Monday",
   "Tuesday",
@@ -13,11 +12,8 @@ const weekday = [
   "Friday",
   "Saturday",
 ];
-let day = weekday[now.getDay()]; //0-6
-let date = now.getDate(); //1-31
-let dateSuper = getNumberWithOrdinal(date);
 
-const monthArr = [
+var monthArr = [
   "January",
   "February",
   "March",
@@ -31,38 +27,41 @@ const monthArr = [
   "November",
   "December",
 ];
-function getNumberWithOrdinal(n) {
-  var s = ["th", "st", "nd", "rd"],
-    v = n % 100;
-  return n + (s[(v - 20) % 10] || s[v] || s[0]);
-}
-let month = monthArr[now.getMonth()];
-
+var now = new Date();
+// console.log(now);
+var day = weekdays[now.getDay()]; //between 0-6
+var date = now.getDate(); //between 1-31
+var month = monthArr[now.getMonth()];
 var year = now.getFullYear();
-currentDay.innerHTML = dateSuper + ", " + month + ", " + day + ", " + year;
+var sufFix = superScript(date);
+
+function superScript(date) {
+  var sSc = ["th", "st", "nd", "rd"],
+    vSc = date % 100;
+  return date + (sSc[(vSc - 20) % 10] || sSc[vSc] || sSc[0]);
+}
+
+currentDay.innerHTML = sufFix + ", " + month + ", " + day + ", " + year;
 
 function addTimeBlocks() {
   for (var i = 9; i < 18; i++) {
-    //to do check if there is localStorage for this time
-    // var tasks = localStorage.getItem("rowId");
-    //to add text arr
-    // console.log(tasks);
-    // document.getElementById("text").innerHTML =
-    var amPm = "am";
+    var moEv = " a.m.";
     if (i > 11) {
-      amPm = "pm";
+      moEv = " p.m.";
     }
 
     var tasks = localStorage.getItem("myNote" + i) || "";
     timeblocks = `<div id="taskRow${i}" class="row">
-    <div class="col-2 workTime">${i}:00 ${amPm}</div>
+    <div class="col-2 workTime">${i}:00 ${moEv}</div>
     <textarea name="" id="myNote${i}" class="col-8">${tasks}</textarea>
     <button class="col-2 saveBtn" type="button">Save Task</button>
   </div>`;
     timeblockContainer[0].innerHTML += timeblocks;
+
     var date = new Date();
     var currentHour = date.getHours();
     var txtarea = document.getElementById("myNote" + i);
+
     if (i < currentHour) {
       txtarea.classList.remove("present");
       txtarea.classList.remove("future");
@@ -79,14 +78,10 @@ function addTimeBlocks() {
   }
   addButtonListeners(); //add listener
 }
-// console.log(localStorage.getItem("myNote11"));
 
-//creating listerner function
 function addButtonListeners() {
-  var buttons = document.getElementsByTagName("button"); //link first
-  //console.log(buttons)
   for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", saveTask); //add saveTask button function to save
+    buttons[i].addEventListener("click", saveTask);
   }
 }
 
@@ -101,12 +96,9 @@ function saveTask(event) {
   // console.log(note);
   // console.log("task received");
   var rowId = textarea.attr("id");
-  // console.log(row.attr("id"));
+  // console.log(textarea.attr("id"));
 
   localStorage.setItem(rowId, note);
-  //todo store the note in localStorage
-  // localStorage.setItem("myNote", JSON.stringify(myNote));
 }
 
-//## call function
 addTimeBlocks();

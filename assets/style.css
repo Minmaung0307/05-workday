@@ -8,6 +8,11 @@ body {
   color: #06aed5;
   font-size: 1.5rem;
 }
+
+#currentDay:hover {
+  color: darkgreen;
+}
+
 textarea {
   background: transparent;
   border: none;
@@ -24,15 +29,6 @@ textarea {
   border-radius: 0;
   border-bottom: 10px solid black;
 }
-
-/* .description{
-  white-space: pre-wrap;
-} */
-
-/* .time-block {
-  text-align: center;
-  border-radius: 15px;
-} */
 
 .row {
   white-space: pre-wrap;
@@ -79,14 +75,7 @@ textarea {
   font-weight: bold;
 }
 
-/* 
-.saveBtn i:hover {
-  font-size: 20px;
-  transition: all 0.3s ease-in-out;
+.saveBtn:hover {
+  background-color: darkcyan;
+  font-size: 1.7rem;
 }
-  .hour {
-  background-color: #ffffff;
-  color: #000000;
-  border-top: 1px dashed #000000;
-} 
-*/
