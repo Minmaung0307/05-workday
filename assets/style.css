@@ -4,6 +4,10 @@ body {
   line-height: 1;
 }
 
+#currentDay {
+  color: #06aed5;
+  font-size: 1.5rem;
+}
 textarea {
   background: transparent;
   border: none;
@@ -36,25 +40,34 @@ textarea {
   border-top: 1px solid white;
 }
 
-/* .hour {
-  background-color: #ffffff;
-  color: #000000;
-  border-top: 1px dashed #000000;
-} */
-
 .past {
   background-color: #d3d3d3;
-  color: white;
+  color: darkblue;
+  font-size: 1.2rem;
+  padding: 15px;
 }
 
 .present {
   background-color: #ecae8a;
   color: white;
+  font-size: 1.2rem;
+  padding: 15px;
 }
 
 .future {
   background-color: #77dd77;
+  color: darkgrey;
+  font-size: 1.2rem;
+  padding: 15px;
+}
+
+.workTime {
+  background-color: #06aed5;
   color: white;
+  padding-top: 25px;
+  text-align: center;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 
 .saveBtn {
@@ -63,9 +76,17 @@ textarea {
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
   color: white;
+  font-weight: bold;
 }
 
-/* .saveBtn i:hover {
+/* 
+.saveBtn i:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
-} */
+}
+  .hour {
+  background-color: #ffffff;
+  color: #000000;
+  border-top: 1px dashed #000000;
+} 
+*/

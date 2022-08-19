@@ -55,7 +55,7 @@ function addTimeBlocks() {
 
     var tasks = localStorage.getItem("myNote" + i) || "";
     timeblocks = `<div id="taskRow${i}" class="row">
-    <div class="col-2">${i}:00 ${amPm}</div>
+    <div class="col-2 workTime">${i}:00 ${amPm}</div>
     <textarea name="" id="myNote${i}" class="col-8">${tasks}</textarea>
     <button class="col-2 saveBtn" type="button">Save Task</button>
   </div>`;
