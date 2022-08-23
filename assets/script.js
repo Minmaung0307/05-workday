@@ -1,9 +1,26 @@
+//#1 Targetting HTML Elements
 var timeblockContainer = document.getElementsByClassName("container");
 var currentDay = document.getElementById("currentDay");
 var buttons = document.getElementsByTagName("button");
 // console.log(timeblockContainer);
 
-var weekdays = [
+//#2 Getting Date, Day, Month, Year
+var now = new Date();
+currentDay.innerHTML = now.toLocaleString("en-US");
+
+/*
+// console.log(now);
+var pastDate = new Date(1100, 11, 25, 11, 45, 59);
+var futureDate = new Date(5500, 11, 25, 11, 45, 59);
+var birthday = new Date(1900, 1, 25, 11, 25, 15);
+console.log(birthday.getMonth()); // 0-11
+console.log(birthday.getFullYear()); // yyyy
+console.log(birthday.getDate()); // 1-31
+console.log(birthday.getDay()); // 0-6
+console.log(birthday.getHours()); // 0-23
+console.log(birthday.getTime()); // mimmiseconds since 1st Jan
+
+var weekArr = [
   "Sunday",
   "Monday",
   "Tuesday",
@@ -12,6 +29,7 @@ var weekdays = [
   "Friday",
   "Saturday",
 ];
+var day = weekArr[now.getDay()]; //between 0-6
 
 var monthArr = [
   "January",
@@ -27,32 +45,35 @@ var monthArr = [
   "November",
   "December",
 ];
-var now = new Date();
-// console.log(now);
-var day = weekdays[now.getDay()]; //between 0-6
+
 var date = now.getDate(); //between 1-31
-var month = monthArr[now.getMonth()];
-var year = now.getFullYear();
 var sufFix = superScript(date);
 
 function superScript(date) {
-  var sSc = ["th", "st", "nd", "rd"],
+  var supScpt = ["th", "st", "nd", "rd"],
     vSc = date % 100;
-  return date + (sSc[(vSc - 20) % 10] || sSc[vSc] || sSc[0]);
+  return date + (supScpt[(vSc - 20) % 10] || supScpt[vSc] || supScpt[0]);
 }
 
-currentDay.innerHTML = sufFix + ", " + month + ", " + day + ", " + year;
+var month = monthArr[now.getMonth()];
+var year = now.getFullYear();
 
+// currentDay.innerHTML = day + ", " + sufFix + ", " + month + ", " + ", " + year;
+*/
+
+//#3 Creating Timeblocks
 function addTimeBlocks() {
   for (var i = 9; i < 18; i++) {
-    var moEv = " a.m.";
+    var morningEvening = " A.M.";
     if (i > 11) {
-      moEv = " p.m.";
+      morningEvening = " P.M.";
     }
 
     var tasks = localStorage.getItem("myNote" + i) || "";
+
+    //#3.1
     timeblocks = `<div id="taskRow${i}" class="row">
-    <div class="col-2 workTime">${i}:00 ${moEv}</div>
+    <div class="col-2 workTime">${i}:00 ${morningEvening}</div>
     <textarea name="" id="myNote${i}" class="col-8">${tasks}</textarea>
     <button class="col-2 saveBtn" type="button">Save Task</button>
   </div>`;
@@ -79,12 +100,14 @@ function addTimeBlocks() {
   addButtonListeners(); //add listener
 }
 
+//#4 Adding eventListerner to Buttons
 function addButtonListeners() {
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", saveTask);
   }
 }
 
+//#5 Save button action and save to local storage
 //create save button function
 function saveTask(event) {
   event.preventDefault();
