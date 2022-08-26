@@ -6,12 +6,6 @@ In this weekday calendar,
 - present, previous and upcoming schedule are shown with color.
 - can save the items by pressig saveTask button and the item persists.
 
-# Componants
-
-- HTML
-- CSS
-- JavaScript
-
 # URL link
 
 https://minmaung0307.github.io/module5-workday/
